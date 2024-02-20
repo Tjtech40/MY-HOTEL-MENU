@@ -1,62 +1,64 @@
-// Import the material package.
 import 'package:flutter/material.dart';
 
-// Define the main function to run the app.
 void main() {
   runApp(MyApp());
 }
 
-// Define the FoodItem class representing food categories.
 class FoodItem {
   final String category;
+  final String name;
 
-  // Constructor for FoodItem.
-  FoodItem({required this.category});
+  FoodItem({required this.category, required this.name});
 }
 
-// Define a list of food categories.
-List<FoodItem> foodItems = [
-  FoodItem(category: 'Breakfast'),
-  FoodItem(category: 'Lunch'),
-  FoodItem(category: 'Snack'),
-  FoodItem(category: 'Dinner'),
-  FoodItem(category: 'Beverages'),
+List<FoodItem> breakfastItems = [
+  FoodItem(category: 'Breakfast', name: 'Eggs and Bacon'),
+  FoodItem(category: 'Breakfast', name: 'Pancakes'),
 ];
 
-// Define the MyApp class, which is the root of the application.
+List<FoodItem> lunchItems = [
+  FoodItem(category: 'Lunch', name: 'Club Sandwich'),
+  FoodItem(category: 'Lunch', name: 'Caesar Salad'),
+];
+
+List<FoodItem> snackItems = [
+  FoodItem(category: 'Snack', name: 'Fruit Salad'),
+  FoodItem(category: 'Snack', name: 'Veggie Sticks'),
+];
+
+List<FoodItem> dinnerItems = [
+  FoodItem(category: 'Dinner', name: 'Spaghetti Bolognese'),
+  FoodItem(category: 'Dinner', name: 'Grilled Chicken'),
+];
+
+List<FoodItem> beverageItems = [
+  FoodItem(category: 'Beverages', name: 'Coffee'),
+  FoodItem(category: 'Beverages', name: 'Tea'),
+];
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Return MaterialApp widget.
     return MaterialApp(
-      // Set app title.
       title: 'Food Menu',
-      // Set app theme.
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // Set home screen.
       home: HomeScreen(),
-      // Disable debug banner.
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-// Define the HomeScreen class, which represents the main screen of the app.
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Return Scaffold widget.
     return Scaffold(
-      // Set app bar.
       appBar: AppBar(
         title: Text('Food Menu'),
       ),
-      // Set app body as a stack to overlay background image with food categories list.
       body: Stack(
         children: [
-          // Background image.
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -65,7 +67,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          // Food categories list.
           FoodCategoriesList(),
         ],
       ),
@@ -73,29 +74,90 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// Define the FoodCategoriesList class, which displays the list of food categories.
 class FoodCategoriesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Return a ListView builder.
     return ListView.builder(
-      // Set item count to the length of foodItems list.
-      itemCount: foodItems.length,
-      // Define item builder function.
+      itemCount: 5,
       itemBuilder: (context, index) {
-        // Get food item at current index.
-        final foodItem = foodItems[index];
-        // Return a ListTile for each food category.
+        String category;
+        switch (index) {
+          case 0:
+            category = 'Breakfast';
+            break;
+          case 1:
+            category = 'Lunch';
+            break;
+          case 2:
+            category = 'Snack';
+            break;
+          case 3:
+            category = 'Dinner';
+            break;
+          case 4:
+            category = 'Beverages';
+            break;
+          default:
+            category = '';
+        }
         return ListTile(
-          // Set title text to food category.
-          title: Text(foodItem.category),
-          // Handle category selection onTap.
+          title: Text(category),
           onTap: () {
-            // Handle category selection
-            // You can navigate to a screen showing food items for the selected category
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FoodItemsScreen(category: category),
+              ),
+            );
           },
         );
       },
+    );
+  }
+}
+
+class FoodItemsScreen extends StatelessWidget {
+  final String category;
+
+  FoodItemsScreen({required this.category});
+
+  @override
+  Widget build(BuildContext context) {
+    List<FoodItem> items;
+    switch (category) {
+      case 'Breakfast':
+        items = breakfastItems;
+        break;
+      case 'Lunch':
+        items = lunchItems;
+        break;
+      case 'Snack':
+        items = snackItems;
+        break;
+      case 'Dinner':
+        items = dinnerItems;
+        break;
+      case 'Beverages':
+        items = beverageItems;
+        break;
+      default:
+        items = [];
+    }
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(category),
+      ),
+      body: Center(
+        child: ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            final item = items[index];
+            return ListTile(
+              title: Text(item.name),
+            );
+          },
+        ),
+      ),
     );
   }
 }
