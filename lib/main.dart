@@ -12,13 +12,20 @@ class FoodItem {
 }
 
 List<FoodItem> breakfastItems = [
-  FoodItem(category: 'Breakfast', name: 'Eggs and Bacon'),
-  FoodItem(category: 'Breakfast', name: 'Pancakes'),
+  FoodItem(category: 'Breakfast', name: 'Mahamuri na maharagwe ya nazi'),
+  FoodItem(category: 'Breakfast', name: 'halfcakes na rangi'),
+  FoodItem(category: 'Breakfast', name: 'ChapatI na Maharagwe'),
+   FoodItem(category: 'Breakfast', name: 'ChapatI na mbaazi ya nazi'),
+    FoodItem(category: 'Breakfast', name: 'chai na mkate'),
 ];
 
 List<FoodItem> lunchItems = [
-  FoodItem(category: 'Lunch', name: 'Club Sandwich'),
-  FoodItem(category: 'Lunch', name: 'Caesar Salad'),
+  FoodItem(category: 'Lunch', name: 'Wari na mboga ya majani'),
+  FoodItem(category: 'Lunch', name: 'Wari na samaki'),
+  FoodItem(category: 'Lunch', name: 'Wari na Nyama'),
+  FoodItem(category: 'Lunch', name: 'wali na Nyama'),
+  FoodItem(category: 'Lunch', name: 'Wali na samaki wa nazi'),
+  FoodItem(category: 'Lunch', name: 'pilau'),
 ];
 
 List<FoodItem> snackItems = [
@@ -27,20 +34,27 @@ List<FoodItem> snackItems = [
 ];
 
 List<FoodItem> dinnerItems = [
-  FoodItem(category: 'Dinner', name: 'Spaghetti Bolognese'),
-  FoodItem(category: 'Dinner', name: 'Grilled Chicken'),
+   FoodItem(category: 'Diner', name: 'Wari na mboga ya majani'),
+  FoodItem(category: 'Diner', name: 'Wari na samaki'),
+  FoodItem(category: 'Diner', name: 'Wari na Nyama'),
+  FoodItem(category: 'Diner', name: 'wali na Nyama'),
+  FoodItem(category: 'Diner', name: 'Wali na samaki wa nazi'),
+  FoodItem(category: 'Diner', name: 'pilau'),
 ];
 
 List<FoodItem> beverageItems = [
-  FoodItem(category: 'Beverages', name: 'Coffee'),
-  FoodItem(category: 'Beverages', name: 'Tea'),
+  FoodItem(category: 'Beverages', name: 'Kahawa'),
+  FoodItem(category: 'Beverages', name: 'Chai Rangi'),
+   FoodItem(category: 'Beverages', name: 'Maji ya madafu'),
+    FoodItem(category: 'Beverages', name: 'Tea'),
+     FoodItem(category: 'Beverages', name: 'Arwa Baridi'),
 ];
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Food Menu',
+      title: 'Olive Cafe Menu',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -55,7 +69,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Food Menu'),
+        title: Text('Olive Cafe '),
       ),
       body: Stack(
         children: [
